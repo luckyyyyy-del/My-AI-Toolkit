@@ -1,0 +1,526 @@
+/* ============================================
+   DESIGN TOKENS
+   These are variables — define a color/size once,
+   reuse it everywhere. Change it here, it updates
+   the whole site.
+   ============================================ */
+:root {
+  --bg: #F7F7F5;
+  --surface: #FFFFFF;
+  --ink: #14151A;
+  --muted: #6B6D76;
+  --accent: #4B4EFC;
+  --accent-ink: #FFFFFF;
+  --border: #E4E4E0;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --radius: 14px;
+  --max-width: 1120px;
+}
+
+/* ============================================
+   RESET
+   Browsers apply their own default spacing/sizing.
+   This wipes that so we have a clean, predictable
+   starting point.
+   ============================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+}
+
+/* Visible focus outline for keyboard users (accessibility) */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(247, 247, 245, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+
+.nav__links {
+  display: flex;
+  gap: 32px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.nav__links a {
+  color: var(--muted);
+  transition: color 0.15s ease;
+}
+
+.nav__links a:hover {
+  color: var(--ink);
+}
+
+/* Hamburger button — hidden on desktop, shown on mobile */
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav__toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 96px 24px 80px;
+  text-align: left;
+}
+
+.hero__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+
+.hero__title {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 22px;
+  max-width: 16ch;
+}
+
+.hero__subtitle {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 52ch;
+  margin-bottom: 36px;
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* ============================================
+   TOOLS GRID
+   ============================================ */
+.tools {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px 24px 100px;
+}
+
+.tools__header {
+  margin-bottom: 40px;
+  max-width: 60ch;
+}
+
+.tools__header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.tools__header p {
+  color: var(--muted);
+}
+
+.tools__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tool-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  position: relative;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px -12px rgba(20, 21, 26, 0.15);
+  border-color: var(--accent);
+}
+
+/* The "tool slot" — a dashed square housing the icon,
+   evoking a pegboard where tools hang */
+.tool-card__slot {
+  width: 44px;
+  height: 44px;
+  border: 1.5px dashed var(--accent);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.tool-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.tool-card p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-bottom: 18px;
+}
+
+.tool-card__tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+.tool-card__tag--live {
+  color: var(--accent);
+  background: rgba(75, 78, 252, 0.08);
+  border-color: rgba(75, 78, 252, 0.25);
+}
+
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+.about {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 20px 24px 100px;
+  border-top: 1px solid var(--border);
+  padding-top: 60px;
+}
+
+.about h2 {
+  font-size: 1.6rem;
+  margin-bottom: 14px;
+}
+
+.about p {
+  color: var(--muted);
+  max-width: 60ch;
+  font-size: 1.02rem;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ============================================
+   TOOL PAGE (shared by all 7 tool pages)
+   ============================================ */
+.tool-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 100px;
+}
+
+.tool-page__back {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 32px;
+  transition: color 0.15s ease;
+}
+
+.tool-page__back:hover {
+  color: var(--ink);
+}
+
+.tool-page__intro h1 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  margin: 10px 0 12px;
+}
+
+.tool-page__subtitle {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-bottom: 40px;
+}
+
+.tool-page__note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* The form: a simple vertical stack with consistent spacing */
+.rewriter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rewriter label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 16px;
+}
+
+.rewriter textarea,
+.rewriter select {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  resize: vertical;
+}
+
+.rewriter textarea:focus,
+.rewriter select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.rewriter .btn {
+  margin-top: 20px;
+  align-self: flex-start;
+}
+
+.rewriter .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn--ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--ink);
+}
+
+/* API key box */
+.key-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 32px;
+}
+
+.key-box label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.key-box input {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.key-box input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.key-box a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.error-text {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: rgba(220, 38, 38, 0.06);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  color: #B42318;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+/* Result box */
+.result {
+  margin-top: 40px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.result__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.result__header h2 {
+  font-size: 1.1rem;
+}
+
+.result__text {
+  white-space: pre-wrap;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* ============================================
+   RESPONSIVE — TABLET
+   ============================================ */
+@media (max-width: 900px) {
+  .tools__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================================
+   RESPONSIVE — MOBILE
+   ============================================ */
+@media (max-width: 640px) {
+  .nav__toggle {
+    display: flex;
+  }
+
+  .nav__links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 24px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+
+  .nav__links.is-open {
+    max-height: 300px;
+  }
+
+  .nav__links li {
+    border-top: 1px solid var(--border);
+  }
+
+  .nav__links a {
+    display: block;
+    padding: 14px 0;
+  }
+
+  .hero {
+    padding: 64px 20px 56px;
+    text-align: left;
+  }
+
+  .tools__grid {
+    grid-template-columns: 1fr;
+  }
+}

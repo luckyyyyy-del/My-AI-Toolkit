@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Helper — My AI Toolkit</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html" class="nav__logo">My AI Toolkit</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#tools">Tools</a></li>
+        <li><a href="index.html#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="tool-page">
+    <a href="index.html#tools" class="tool-page__back">&larr; Back to toolkit</a>
+
+    <div class="tool-page__intro">
+      <p class="hero__eyebrow">Tool 4 of 7</p>
+      <h1>Study Helper</h1>
+      <p class="tool-page__subtitle">Paste your notes and turn them into summaries, quizzes, or simple explanations.</p>
+    </div>
+
+    <div class="key-box">
+      <label for="apiKeyInput">Your Anthropic API key</label>
+      <input type="password" id="apiKeyInput" placeholder="sk-ant-..." autocomplete="off" />
+      <p class="tool-page__note">
+        Kept in memory only for this browser tab — never saved to a file.
+        Get a key at <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a>.
+        Testing? A fake key like <code>sk-ant-test-not-real</code> works too.
+      </p>
+    </div>
+
+    <form class="rewriter" id="studyForm">
+
+      <label for="notesInput">Your notes or study material</label>
+      <textarea
+        id="notesInput"
+        rows="7"
+        placeholder="Paste the notes, textbook passage, or topic you're studying"
+        required
+      ></textarea>
+
+      <label for="taskSelect">What do you need?</label>
+      <select id="taskSelect">
+        <option value="summarize">Summarize the key points</option>
+        <option value="quiz">Create quiz questions to test myself</option>
+        <option value="explain">Explain it more simply</option>
+        <option value="flashcards">Turn it into flashcards</option>
+      </select>
+
+      <button type="submit" class="btn btn--primary" id="generateBtn">Generate</button>
+
+      <p class="tool-page__note">Powered by Claude (Anthropic's AI model).</p>
+    </form>
+
+    <p class="error-text" id="errorText" hidden></p>
+
+    <section class="result" id="resultSection" hidden>
+      <div class="result__header">
+        <h2>Result</h2>
+        <button class="btn btn--ghost" id="copyBtn" type="button">Copy</button>
+      </div>
+      <p class="result__text" id="resultText"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 My AI Toolkit. Built while learning.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="study.js"></script>
+</body>
+</html>

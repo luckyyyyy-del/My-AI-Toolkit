@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My AI Toolkit</title>
+
+  <!-- Fonts: Space Grotesk for headings, Inter for body text, JetBrains Mono for small labels -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#top" class="nav__logo">My AI Toolkit</a>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#top">Home</a></li>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="top">
+      <p class="hero__eyebrow">A beginner-friendly toolkit</p>
+      <h1 class="hero__title">Seven small AI tools.<br>Zero learning curve.</h1>
+      <p class="hero__subtitle">
+        Practical, everyday helpers for writing, studying, job hunting,
+        and prompting — built simply, so simply that you can learn how they work.
+      </p>
+      <a href="#tools" class="btn btn--primary">Browse the tools</a>
+    </section>
+
+    <!-- ===== TOOLS GRID ===== -->
+    <section class="tools" id="tools">
+      <div class="tools__header">
+        <h2>The toolkit</h2>
+        <p>Pick a tool below. Each one is a focused helper for a specific task.</p>
+      </div>
+
+      <div class="tools__grid">
+
+        <a href="rewriter.html" class="tool-card">
+          <div class="tool-card__slot">✎</div>
+          <h3>AI Text Rewriter</h3>
+          <p>Turn rough drafts into clear, polished text.</p>
+          <span class="tool-card__tag tool-card__tag--live">Try it</span>
+        </a>
+
+        <a href="email.html" class="tool-card">
+          <div class="tool-card__slot">✉</div>
+          <h3>Email Generator</h3>
+          <p>Write emails for any situation in seconds.</p>
+          <span class="tool-card__tag tool-card__tag--live">Try it</span>
+        </a>
+
+        <a href="idea.html" class="tool-card">
+          <div class="tool-card__slot">✺</div>
+          <h3>Idea Generator</h3>
+          <p>Get unstuck with fresh ideas on any topic.</p>
+          <span class="tool-card__tag tool-card__tag--live">Try it</span>
+        </a>
+
+        <a href="resume.html" class="tool-card">
+          <div class="tool-card__slot">▤</div>
+          <h3>Resume / CV Helper</h3>
+          <p>Sharpen your resume so it stands out.</p>
+          <span class="tool-card__tag tool-card__tag--live">Try it</span>
+        </a>
+
+        <a href="study.html" class="tool-card">
+          <div class="tool-card__slot">▥</div>
+          <h3>Study Helper</h3>
+          <p>Turn notes into summaries and quiz questions.</p>
+          <span class="tool-card__tag tool-card__tag--live">Try it</span>
+        </a>
+
+        <a href="prompt.html" class="tool-card">
+          <div class="tool-card__slot">▶</div>
+          <h3>Prompt Generator</h3>
+          <p>Craft better prompts for any AI tool.</p>
+          <span class="tool-card__tag tool-card__tag--live">Try it</span>
+        </a>
+
+        <a href="imageprompt.html" class="tool-card">
+          <div class="tool-card__slot">◈</div>
+          <h3>Image Prompt Generator</h3>
+          <p>Describe the image you want — we'll write the prompt.</p>
+          <span class="tool-card__tag tool-card__tag--live">Try it</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ===== ABOUT / FOOTER ===== -->
+    <section class="about" id="about">
+      <h2>Why this exists</h2>
+      <p>My AI Toolkit is a small collection of AI-powered helpers built for people who are just getting started — no technical background needed.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 My AI Toolkit. Built while learning.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Text Rewriter — My AI Toolkit</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Same navigation as the homepage, so the site feels consistent -->
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html" class="nav__logo">My AI Toolkit</a>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#tools">Tools</a></li>
+        <li><a href="index.html#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="tool-page">
+    <a href="index.html#tools" class="tool-page__back">&larr; Back to toolkit</a>
+
+    <div class="tool-page__intro">
+      <p class="hero__eyebrow">Tool 1 of 7</p>
+      <h1>AI Text Rewriter</h1>
+      <p class="tool-page__subtitle">Paste in some text, choose a style, and get a rewritten version.</p>
+    </div>
+
+    <!-- API key section: your key is kept only in this page's memory.
+         It is never written to a file, and it clears itself if you refresh. -->
+    <div class="key-box">
+      <label for="apiKeyInput">Your Anthropic API key</label>
+      <input
+        type="password"
+        id="apiKeyInput"
+        placeholder="sk-ant-..."
+        autocomplete="off"
+      />
+      <p class="tool-page__note">
+        Kept in memory only for this browser tab — never saved to a file.
+        Get a key at <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a>.
+      </p>
+    </div>
+
+    <!-- The form: everything the user fills in or chooses -->
+    <form class="rewriter" id="rewriterForm">
+
+      <label for="inputText">Your text</label>
+      <textarea
+        id="inputText"
+        rows="6"
+        placeholder="Paste or type the text you want rewritten..."
+        required
+      ></textarea>
+
+      <label for="styleSelect">Rewrite style</label>
+      <select id="styleSelect">
+        <option value="formal">Formal</option>
+        <option value="casual">Casual</option>
+        <option value="shorter">Shorter</option>
+        <option value="simpler">Simpler</option>
+      </select>
+
+      <button type="submit" class="btn btn--primary" id="rewriteBtn">Rewrite text</button>
+
+      <p class="tool-page__note">Powered by Claude (Anthropic's AI model).</p>
+    </form>
+
+    <p class="error-text" id="errorText" hidden></p>
+
+    <!-- Output area — hidden until there's a result to show -->
+    <section class="result" id="resultSection" hidden>
+      <div class="result__header">
+        <h2>Result</h2>
+        <button class="btn btn--ghost" id="copyBtn" type="button">Copy</button>
+      </div>
+      <p class="result__text" id="resultText"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 My AI Toolkit. Built while learning.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="rewriter.js"></script>
+</body>
+</html>
