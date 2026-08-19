@@ -24,7 +24,7 @@ Respond with ONLY the finished prompt text itself, written as if it will be past
 async function generatePrompt(goal, style) {
     const prompt = buildPrompt(goal, style);
 
-    const response = await fetch('http://localhost:3000/api/chat', {
+    const response = await fetch('https://my-ai-toolkit.onrender.com/api/chat', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
