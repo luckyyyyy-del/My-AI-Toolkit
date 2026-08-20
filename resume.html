@@ -31,31 +31,19 @@
   </header>
 
   <main class="tool-page">
-    <a href="index.html#tools" class="tool-page__back">&larr; Back to toolkit</a>
+
+    <a href="index.html#tools" class="tool-page__back">
+      &larr; Back to toolkit
+    </a>
 
     <div class="tool-page__intro">
       <p class="hero__eyebrow">Tool 3 of 7</p>
       <h1>Resume / CV Helper</h1>
-      <p class="tool-page__subtitle">Fill in your details and get a professional, ATS-friendly resume.</p>
-    </div>
-
-    <!-- Same key box pattern as every other tool -->
-    <div class="key-box">
-      <label for="apiKeyInput">Your Anthropic API key</label>
-      <input
-        type="password"
-        id="apiKeyInput"
-        placeholder="sk-ant-..."
-        autocomplete="off"
-      />
-      <p class="tool-page__note">
-        Kept in memory only for this browser tab — never saved to a file.
-        Get a key at <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a>.
-        Testing? A fake key like <code>sk-ant-test-not-real</code> works too — see the note below the button.
+      <p class="tool-page__subtitle">
+        Fill in your details and get a professional, ATS-friendly resume.
       </p>
     </div>
 
-    <!-- Five inputs this time, all textareas except the job title -->
     <form class="rewriter" id="resumeForm">
 
       <label for="jobTitleInput">Target job title</label>
@@ -90,7 +78,10 @@
         required
       ></textarea>
 
-      <label for="jobDescriptionInput">Job description (paste the posting you're applying to)</label>
+      <label for="jobDescriptionInput">
+        Job description (paste the posting you're applying to)
+      </label>
+
       <textarea
         id="jobDescriptionInput"
         rows="6"
@@ -98,20 +89,51 @@
         required
       ></textarea>
 
-      <button type="submit" class="btn btn--primary" id="generateBtn">Generate resume</button>
+      <button
+        type="submit"
+        class="btn btn--primary"
+        id="generateBtn"
+      >
+        Generate resume
+      </button>
 
-      <p class="tool-page__note">Powered by Claude (Anthropic's AI model).</p>
+      <p class="tool-page__note">
+        Powered by Claude (Anthropic's AI model).
+      </p>
+
     </form>
 
-    <p class="error-text" id="errorText" hidden></p>
+    <p
+      class="error-text"
+      id="errorText"
+      hidden
+    ></p>
 
-    <section class="result" id="resultSection" hidden>
+    <section
+      class="result"
+      id="resultSection"
+      hidden
+    >
+
       <div class="result__header">
         <h2>Result</h2>
-        <button class="btn btn--ghost" id="copyBtn" type="button">Copy</button>
+
+        <button
+          class="btn btn--ghost"
+          id="copyBtn"
+          type="button"
+        >
+          Copy
+        </button>
       </div>
-      <p class="result__text" id="resultText"></p>
+
+      <p
+        class="result__text"
+        id="resultText"
+      ></p>
+
     </section>
+
   </main>
 
   <footer class="site-footer">
@@ -120,5 +142,6 @@
 
   <script src="script.js"></script>
   <script src="resume.js"></script>
+
 </body>
 </html>
