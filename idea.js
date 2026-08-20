@@ -6,7 +6,6 @@ const generateBtn = document.getElementById('generateBtn');
 const resultSection = document.getElementById('resultSection');
 const resultText = document.getElementById('resultText');
 const copyBtn = document.getElementById('copyBtn');
-const apiKeyInput = document.getElementById('apiKeyInput');
 const errorText = document.getElementById('errorText');
 
 function buildPrompt(topic, context, count) {
@@ -17,35 +16,31 @@ function buildPrompt(topic, context, count) {
   return `Generate ${count} distinct, creative ideas for: ${topic}.
 ${contextLine}
 
-Present them as a numbered list. Keep each idea to one or two sentences.`;
+Present them as a numbered list. Keep each idea to one or two sentences.
+
+Respond with ONLY the numbered list of ideas — no preamble or explanation.`;
 }
 
-async function generateIdeas(topic, context, count, apiKey) {
+async function generateIdeas(topic, context, count) {
   const prompt = buildPrompt(topic, context, count);
 
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
+  const response = await fetch('https://my-ai-toolkit.onrender.com/api/chat', {
     method: 'POST',
     headers: {
-      'content-type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 1024,
-      system: 'You are a creative brainstorming assistant. Respond with ONLY the numbered list of ideas — no preamble or explanation.',
-      messages: [{ role: 'user', content: prompt }]
+      message: prompt
     })
   });
 
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.error?.message || 'Something went wrong calling the API.');
+    throw new Error(data.error || 'Something went wrong calling the AI.');
   }
 
-  return data.content[0].text;
+  return data.reply;
 }
 
 form.addEventListener('submit', async (event) => {
@@ -54,21 +49,15 @@ form.addEventListener('submit', async (event) => {
   const topic = topicInput.value.trim();
   const context = contextInput.value.trim();
   const count = countSelect.value;
-  const apiKey = apiKeyInput.value.trim();
 
   errorText.hidden = true;
-
-  if (!apiKey) {
-    errorText.textContent = 'Please enter your API key above first.';
-    errorText.hidden = false;
-    return;
-  }
 
   generateBtn.disabled = true;
   generateBtn.textContent = 'Generating...';
 
   try {
-    const ideas = await generateIdeas(topic, context, count, apiKey);
+    const ideas = await generateIdeas(topic, context, count);
+
     resultText.textContent = ideas;
     resultSection.hidden = false;
   } catch (err) {
@@ -82,6 +71,10 @@ form.addEventListener('submit', async (event) => {
 
 copyBtn.addEventListener('click', async () => {
   await navigator.clipboard.writeText(resultText.textContent);
+
   copyBtn.textContent = 'Copied!';
-  setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1500);
+
+  setTimeout(() => {
+    copyBtn.textContent = 'Copy';
+  }, 1500);
 });
