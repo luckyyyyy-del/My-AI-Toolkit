@@ -10,44 +10,58 @@
 
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
+
       <a href="index.html" class="nav__logo">My AI Toolkit</a>
-      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+
+      <button
+        class="nav__toggle"
+        id="navToggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
+
       <ul class="nav__links" id="navLinks">
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#tools">Tools</a></li>
         <li><a href="index.html#about">About</a></li>
       </ul>
+
     </nav>
   </header>
 
   <main class="tool-page">
-    <a href="index.html#tools" class="tool-page__back">&larr; Back to toolkit</a>
+
+    <a href="index.html#tools" class="tool-page__back">
+      &larr; Back to toolkit
+    </a>
 
     <div class="tool-page__intro">
-      <p class="hero__eyebrow">Tool 6 of 7</p>
-      <h1>Prompt Generator</h1>
-      <p class="tool-page__subtitle">Describe your goal, and get a well-crafted prompt to use with any AI chat tool.</p>
-    </div>
 
-    <div class="key-box">
-      <label for="apiKeyInput">Your Anthropic API key</label>
-      <input type="password" id="apiKeyInput" placeholder="sk-ant-..." autocomplete="off" />
-      <p class="tool-page__note">
-        Kept in memory only for this browser tab — never saved to a file.
-        Get a key at <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a>.
-        Testing? A fake key like <code>sk-ant-test-not-real</code> works too.
+      <p class="hero__eyebrow">Tool 6 of 7</p>
+
+      <h1>Prompt Generator</h1>
+
+      <p class="tool-page__subtitle">
+        Describe your goal, and get a well-crafted prompt to use with any AI chat tool.
       </p>
+
     </div>
 
     <form class="rewriter" id="promptForm">
 
-      <label for="goalInput">What do you want an AI to help you do?</label>
+      <label for="goalInput">
+        What do you want an AI to help you do?
+      </label>
+
       <textarea
         id="goalInput"
         rows="4"
@@ -55,7 +69,10 @@
         required
       ></textarea>
 
-      <label for="styleSelect">Prompt style</label>
+      <label for="styleSelect">
+        Prompt style
+      </label>
+
       <select id="styleSelect">
         <option value="detailed">Detailed and specific</option>
         <option value="stepbystep">Step-by-step instructions</option>
@@ -63,20 +80,53 @@
         <option value="persona">Give the AI a role/persona</option>
       </select>
 
-      <button type="submit" class="btn btn--primary" id="generateBtn">Generate prompt</button>
+      <button
+        type="submit"
+        class="btn btn--primary"
+        id="generateBtn"
+      >
+        Generate prompt
+      </button>
 
-      <p class="tool-page__note">Powered by Claude (Anthropic's AI model).</p>
+      <p class="tool-page__note">
+        Powered by Claude (Anthropic's AI model).
+      </p>
+
     </form>
 
-    <p class="error-text" id="errorText" hidden></p>
+    <p
+      class="error-text"
+      id="errorText"
+      hidden
+    ></p>
 
-    <section class="result" id="resultSection" hidden>
+    <section
+      class="result"
+      id="resultSection"
+      hidden
+    >
+
       <div class="result__header">
+
         <h2>Result</h2>
-        <button class="btn btn--ghost" id="copyBtn" type="button">Copy</button>
+
+        <button
+          class="btn btn--ghost"
+          id="copyBtn"
+          type="button"
+        >
+          Copy
+        </button>
+
       </div>
-      <p class="result__text" id="resultText"></p>
+
+      <p
+        class="result__text"
+        id="resultText"
+      ></p>
+
     </section>
+
   </main>
 
   <footer class="site-footer">
@@ -85,5 +135,6 @@
 
   <script src="script.js"></script>
   <script src="prompt.js"></script>
+
 </body>
 </html>
