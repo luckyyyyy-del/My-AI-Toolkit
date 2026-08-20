@@ -10,44 +10,58 @@
 
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
+
       <a href="index.html" class="nav__logo">My AI Toolkit</a>
-      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+
+      <button
+        class="nav__toggle"
+        id="navToggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
+
       <ul class="nav__links" id="navLinks">
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#tools">Tools</a></li>
         <li><a href="index.html#about">About</a></li>
       </ul>
+
     </nav>
   </header>
 
   <main class="tool-page">
-    <a href="index.html#tools" class="tool-page__back">&larr; Back to toolkit</a>
+
+    <a href="index.html#tools" class="tool-page__back">
+      &larr; Back to toolkit
+    </a>
 
     <div class="tool-page__intro">
-      <p class="hero__eyebrow">Tool 5 of 7</p>
-      <h1>Idea Generator</h1>
-      <p class="tool-page__subtitle">Tell us what you need ideas for, and get a fresh list to work from.</p>
-    </div>
 
-    <div class="key-box">
-      <label for="apiKeyInput">Your Anthropic API key</label>
-      <input type="password" id="apiKeyInput" placeholder="sk-ant-..." autocomplete="off" />
-      <p class="tool-page__note">
-        Kept in memory only for this browser tab — never saved to a file.
-        Get a key at <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a>.
-        Testing? A fake key like <code>sk-ant-test-not-real</code> works too.
+      <p class="hero__eyebrow">Tool 5 of 7</p>
+
+      <h1>Idea Generator</h1>
+
+      <p class="tool-page__subtitle">
+        Tell us what you need ideas for, and get a fresh list to work from.
       </p>
+
     </div>
 
     <form class="rewriter" id="ideaForm">
 
-      <label for="topicInput">What do you need ideas for?</label>
+      <label for="topicInput">
+        What do you need ideas for?
+      </label>
+
       <input
         type="text"
         id="topicInput"
@@ -55,41 +69,85 @@
         required
       />
 
-      <label for="contextInput">Any constraints or context? (optional)</label>
+      <label for="contextInput">
+        Any constraints or context? (optional)
+      </label>
+
       <textarea
         id="contextInput"
         rows="3"
         placeholder="e.g. budget under $50, he likes fishing, keep it under an hour to make"
       ></textarea>
 
-      <label for="countSelect">How many ideas?</label>
+      <label for="countSelect">
+        How many ideas?
+      </label>
+
       <select id="countSelect">
         <option value="5">5</option>
         <option value="10">10</option>
         <option value="15">15</option>
       </select>
 
-      <button type="submit" class="btn btn--primary" id="generateBtn">Generate ideas</button>
+      <button
+        type="submit"
+        class="btn btn--primary"
+        id="generateBtn"
+      >
+        Generate ideas
+      </button>
 
-      <p class="tool-page__note">Powered by Claude (Anthropic's AI model).</p>
+      <p class="tool-page__note">
+        Powered by Claude (Anthropic's AI model).
+      </p>
+
     </form>
 
-    <p class="error-text" id="errorText" hidden></p>
+    <p
+      class="error-text"
+      id="errorText"
+      hidden
+    ></p>
 
-    <section class="result" id="resultSection" hidden>
+    <section
+      class="result"
+      id="resultSection"
+      hidden
+    >
+
       <div class="result__header">
+
         <h2>Result</h2>
-        <button class="btn btn--ghost" id="copyBtn" type="button">Copy</button>
+
+        <button
+          class="btn btn--ghost"
+          id="copyBtn"
+          type="button"
+        >
+          Copy
+        </button>
+
       </div>
-      <p class="result__text" id="resultText"></p>
+
+      <p
+        class="result__text"
+        id="resultText"
+      ></p>
+
     </section>
+
   </main>
 
   <footer class="site-footer">
-    <p>&copy; 2026 My AI Toolkit. Built while learning.</p>
+
+    <p>
+      &copy; 2026 My AI Toolkit. Built while learning.
+    </p>
+
   </footer>
 
   <script src="script.js"></script>
   <script src="idea.js"></script>
+
 </body>
 </html>
