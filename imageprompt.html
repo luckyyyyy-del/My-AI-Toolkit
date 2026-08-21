@@ -1,94 +1,98 @@
-const form = document.getElementById('imagePromptForm');
-const subjectInput = document.getElementById('subjectInput');
-const styleSelect = document.getElementById('styleSelect');
-const detailsInput = document.getElementById('detailsInput');
-const generateBtn = document.getElementById('generateBtn');
-const resultSection = document.getElementById('resultSection');
-const resultText = document.getElementById('resultText');
-const copyBtn = document.getElementById('copyBtn');
-const errorText = document.getElementById('errorText');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Prompt Generator — My AI Toolkit</title>
 
-function buildPrompt(subject, style, details) {
-  const detailsLine = details
-    ? `Extra details to include: ${details}`
-    : '';
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
-  return `Create a detailed, ready-to-use prompt for an AI image generator.
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-Image subject:
-${subject}
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html" class="nav__logo">My AI Toolkit</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#tools">Tools</a></li>
+        <li><a href="index.html#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
 
-Art style:
-${style}
+  <main class="tool-page">
+    <a href="index.html#tools" class="tool-page__back">&larr; Back to toolkit</a>
 
-${detailsLine}
+    <div class="tool-page__intro">
+      <p class="hero__eyebrow">Tool 7 of 7</p>
+      <h1>Image Prompt Generator</h1>
+      <p class="tool-page__subtitle">Describe the image you want, and get a detailed prompt for AI image generators.</p>
+    </div>
 
-Include useful visual details such as composition, lighting, camera angle, atmosphere, colors, environment, textures, and important visual elements when appropriate.
+    <div class="key-box">
+      <label for="apiKeyInput">Your Anthropic API key</label>
+      <input type="password" id="apiKeyInput" placeholder="sk-ant-..." autocomplete="off" />
+      <p class="tool-page__note">
+        Kept in memory only for this browser tab — never saved to a file.
+        Get a key at <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a>.
+        Testing? A fake key like <code>sk-ant-test-not-real</code> works too.
+      </p>
+    </div>
 
-Respond with ONLY the finished image-generation prompt. Do not add an introduction, explanation, or quotation marks.`;
-}
+    <form class="rewriter" id="imagePromptForm">
 
-async function generateImagePrompt(subject, style, details) {
-  const prompt = buildPrompt(subject, style, details);
+      <label for="subjectInput">Describe the image you want</label>
+      <textarea
+        id="subjectInput"
+        rows="4"
+        placeholder="e.g. a cozy cabin in the mountains during autumn"
+        required
+      ></textarea>
 
-  const response = await fetch('https://my-ai-toolkit.onrender.com/api/chat', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      message: prompt
-    })
-  });
+      <label for="styleSelect">Art style</label>
+      <select id="styleSelect">
+        <option value="photorealistic">Photorealistic</option>
+        <option value="digital art">Digital art</option>
+        <option value="watercolor">Watercolor painting</option>
+        <option value="3d render">3D render</option>
+        <option value="minimalist">Minimalist</option>
+        <option value="anime">Anime</option>
+      </select>
 
-  const data = await response.json();
+      <label for="detailsInput">Extra details? (optional)</label>
+      <input
+        type="text"
+        id="detailsInput"
+        placeholder="e.g. warm lighting, sunset, wide angle"
+      />
 
-  if (!response.ok) {
-    throw new Error(data.error || 'Something went wrong calling the AI.');
-  }
+      <button type="submit" class="btn btn--primary" id="generateBtn">Generate image prompt</button>
 
-  return data.reply;
-}
+      <p class="tool-page__note">Powered by Claude (Anthropic's AI model).</p>
+    </form>
 
-form.addEventListener('submit', async (event) => {
-  event.preventDefault();
+    <p class="error-text" id="errorText" hidden></p>
 
-  const subject = subjectInput.value.trim();
-  const style = styleSelect.value;
-  const details = detailsInput.value.trim();
+    <section class="result" id="resultSection" hidden>
+      <div class="result__header">
+        <h2>Result</h2>
+        <button class="btn btn--ghost" id="copyBtn" type="button">Copy</button>
+      </div>
+      <p class="result__text" id="resultText"></p>
+    </section>
+  </main>
 
-  errorText.hidden = true;
-  resultSection.hidden = true;
+  <footer class="site-footer">
+    <p>&copy; 2026 My AI Toolkit. Built while learning.</p>
+  </footer>
 
-  if (!subject) {
-    errorText.textContent = 'Please describe the image you want.';
-    errorText.hidden = false;
-    return;
-  }
-
-  generateBtn.disabled = true;
-  generateBtn.textContent = 'Generating...';
-
-  try {
-    const result = await generateImagePrompt(subject, style, details);
-
-    resultText.textContent = result;
-    resultSection.hidden = false;
-  } catch (error) {
-    errorText.textContent = error.message;
-    errorText.hidden = false;
-  } finally {
-    generateBtn.disabled = false;
-    generateBtn.textContent = 'Generate image prompt';
-  }
-});
-
-copyBtn.addEventListener('click', async () => {
-  await navigator.clipboard.writeText(resultText.textContent);
-
-  copyBtn.textContent = 'Copied!';
-
-  setTimeout(() => {
-    copyBtn.textContent = 'Copy';
-  }, 1500);
-});
+  <script src="script.js"></script>
+  <script src="imageprompt.js"></script>
+</body>
+</html>
